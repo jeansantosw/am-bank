@@ -1,0 +1,15 @@
+POST http://localhost:3333/clients
+Content-Type: application/json
+
+{
+  "cpf": "999.999.999.99",
+  "name": "Sara Santos",
+  "email": "saea@santos.com",
+  "address": "Rua Eldorado Nª50",
+  "workplace": "Arvox",
+  "profession": "Design"
+}
+
+######
+
+GET http://localhost:3333/
