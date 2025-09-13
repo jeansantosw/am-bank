@@ -2,12 +2,12 @@ POST http://localhost:3333/clients
 Content-Type: application/json
 
 {
-  "cpf": "999.999.999.99",
-  "name": "Sara Santos",
-  "email": "saea@santos.com",
-  "address": "Rua Eldorado Nª50",
+  "cpf": "999.999.999.00",
+  "name": "Bruno Santos",
+  "email": "bruno@santos.com",
+  "address": "Rua 13 Nª50, São Paulo",
   "workplace": "Arvox",
-  "profession": "Design"
+  "profession": "PO"
 }
 
 ######
@@ -32,3 +32,7 @@ Content-Type: application/json
   "workplace": "Arvox",
   "profession": "Design"
 }
+
+######
+
+DELETE http://localhost:3333/clients/0c6236bc-ddb2-4b31-b2d9-54a03adacbe8
