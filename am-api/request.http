@@ -13,3 +13,8 @@ Content-Type: application/json
 ######
 
 GET http://localhost:3333/
+
+
+######
+
+GET http://localhost:3333/clients/67208853-b4e6-4b86-94f8-123bcca26d4c
