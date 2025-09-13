@@ -18,3 +18,17 @@ GET http://localhost:3333/
 ######
 
 GET http://localhost:3333/clients/67208853-b4e6-4b86-94f8-123bcca26d4c
+
+######
+
+PUT  http://localhost:3333/clients/67208853-b4e6-4b86-94f8-123bcca26d4c
+Content-Type: application/json
+
+{
+  "cpf": "999.999.999.00",
+  "name": "Sara Cruz",
+  "email": "sara@arvox.com",
+  "address": "Rua Eldorado Nª50, Cidade Nova",
+  "workplace": "Arvox",
+  "profession": "Design"
+}

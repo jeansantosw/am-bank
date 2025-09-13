@@ -15,6 +15,6 @@ export async function getClientsByIdControllers() {
       .from(clients)
       .where(eq(clients.id, clientId.id))
 
-    reply.status(201).send({ client: client[0] })
+    reply.status(200).send({ client: client[0] })
   })
 }
