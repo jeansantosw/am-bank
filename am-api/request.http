@@ -2,17 +2,18 @@ POST http://localhost:3333/clients
 Content-Type: application/json
 
 {
-  "cpf": "999.999.999.00",
-  "name": "Bruno Santos",
-  "email": "bruno@santos.com",
-  "address": "Rua 13 Nª50, São Paulo",
+  "cpf": "000.999.999.00",
+  "name": "Leo Dias",
+  "email": "leo@example.com",
+  "address": "Rua 133 Nª90, São Paulo",
   "workplace": "Arvox",
   "profession": "PO"
 }
 
 ######
 
-GET http://localhost:3333/
+
+GET http://localhost:3333/clients
 
 
 ######
@@ -20,6 +21,8 @@ GET http://localhost:3333/
 GET http://localhost:3333/clients/67208853-b4e6-4b86-94f8-123bcca26d4c
 
 ######
+
+
 
 PUT  http://localhost:3333/clients/67208853-b4e6-4b86-94f8-123bcca26d4c
 Content-Type: application/json
@@ -33,6 +36,8 @@ Content-Type: application/json
   "profession": "Design"
 }
 
+
+
 ######
 
-DELETE http://localhost:3333/clients/0c6236bc-ddb2-4b31-b2d9-54a03adacbe8
+DELETE http://localhost:3333/clients/0f841dcc-ee2d-48fc-b458-950fa275bcf5

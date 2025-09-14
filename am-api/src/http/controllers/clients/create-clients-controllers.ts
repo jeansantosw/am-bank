@@ -1,18 +1,15 @@
-import { server } from '@/app'
-import { db } from '@/database/client'
-import { clients } from '@/database/schema'
+import type { ICreateClients } from '@/types/clients/clients-types'
+import { CreateClientsUsecase } from '../../../usecase/create-clients-usecase'
 
-export async function createClientsControllers() {
-  type insertClients = typeof clients.$inferInsert
+export function createClientsControllers(client: ICreateClients) {
+  const createClientsUsecase = new CreateClientsUsecase()
 
-  server.post('/clients', async (request, reply) => {
-    const clientsBody = request.body as insertClients
-
-    const createClients = await db
-      .insert(clients)
-      .values(clientsBody)
-      .returning({ clientId: clients.id })
-
-    reply.status(201).send({ client: createClients[0] })
+  createClientsUsecase.execute({
+    cpf: client.cpf,
+    name: client.name,
+    email: client.email,
+    address: client.address,
+    workplace: client.workplace,
+    profession: client.profession,
   })
 }
