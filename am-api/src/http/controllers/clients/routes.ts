@@ -1,11 +1,33 @@
-import type { ICreateClients } from '@/types/clients/clients-types'
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { createClientsControllers } from './create-clients-controllers'
+import z from 'zod'
 
 export const createClientsRoute: FastifyPluginAsyncZod = async (server) => {
-  server.post('/clients', async (request) => {
-    const client = request.body as ICreateClients
+  server.post(
+    '/clients',
+    {
+      schema: {
+        body: z.object({
+          cpf: z.string(),
+          name: z.string(),
+          email: z.string(),
+          address: z.string(),
+          workplace: z.string(),
+          profession: z.string(),
+        }),
+        response: {
+          201: z.object({
+            clientId: z.uuid(),
+          }),
+        },
+      },
+    },
+    async (request, reply) => {
+      const body = request.body
 
-    createClientsControllers(client)
-  })
+      const client = await createClientsControllers(body)
+
+      reply.status(201).send({ clientId: client.id })
+    },
+  )
 }
