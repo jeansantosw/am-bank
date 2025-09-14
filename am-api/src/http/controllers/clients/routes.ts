@@ -10,9 +10,9 @@ export const createClientsRoute: FastifyPluginAsyncZod = async (server) => {
         body: z.object({
           cpf: z.string(),
           name: z.string(),
-          email: z.string(),
+          email: z.string().nullable(),
           address: z.string(),
-          workplace: z.string(),
+          workplace: z.string().nullable(),
           profession: z.string(),
         }),
         response: {

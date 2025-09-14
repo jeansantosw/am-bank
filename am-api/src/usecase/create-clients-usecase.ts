@@ -1,9 +1,9 @@
-import type { ICreateClientsUsecase } from './types'
-import { clients } from '@/database/schema'
-import { db } from '@/database/client'
+import { DrizzleClientsRepository } from '@/repositories/drizzle/clients/drizzle-clients-repository'
+import type { ICreateClientsDTO } from '@/types/clients/clients-types'
 
 export class CreateClientsUsecase {
   // constructor() {}
+  drizzleClientsRepository = new DrizzleClientsRepository()
   async execute({
     cpf,
     name,
@@ -11,12 +11,16 @@ export class CreateClientsUsecase {
     address,
     workplace,
     profession,
-  }: ICreateClientsUsecase) {
-    const createClients = await db
-      .insert(clients)
-      .values({ cpf, name, email, address, workplace, profession })
-      .returning()
+  }: ICreateClientsDTO) {
+    const client = await this.drizzleClientsRepository.create({
+      cpf,
+      name,
+      email,
+      address,
+      workplace,
+      profession,
+    })
 
-    return createClients[0]
+    return client
   }
 }
