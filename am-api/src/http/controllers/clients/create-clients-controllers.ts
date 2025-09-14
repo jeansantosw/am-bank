@@ -1,15 +1,27 @@
-import type { ICreateClientsDTO } from '@/types/clients/clients-types'
+import { createClientDTOSchema } from '@/types/clients/clients-types'
 import { CreateClientsUsecase } from '../../../usecase/create-clients-usecase'
+import type { FastifyReply, FastifyRequest } from 'fastify'
 
-export async function createClientsControllers(client: ICreateClientsDTO) {
+export async function createClientsControllers(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
   const createClientsUsecase = new CreateClientsUsecase()
 
-  return await createClientsUsecase.execute({
-    cpf: client.cpf,
-    name: client.name,
-    email: client.email,
-    address: client.address,
-    workplace: client.workplace,
-    profession: client.profession,
-  })
+  const { cpf, name, email, address, workplace, profession } =
+    createClientDTOSchema.parse(request.body)
+
+  try {
+    const client = await createClientsUsecase.execute({
+      cpf,
+      name,
+      email,
+      address,
+      workplace,
+      profession,
+    })
+    reply.status(201).send({ clientId: client.id })
+  } catch (error) {
+    throw new Error()
+  }
 }

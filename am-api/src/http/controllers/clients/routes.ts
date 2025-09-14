@@ -22,12 +22,6 @@ export const createClientsRoute: FastifyPluginAsyncZod = async (server) => {
         },
       },
     },
-    async (request, reply) => {
-      const body = request.body
-
-      const client = await createClientsControllers(body)
-
-      reply.status(201).send({ clientId: client.id })
-    },
+    createClientsControllers,
   )
 }
