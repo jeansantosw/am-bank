@@ -1,5 +1,5 @@
 import { createClientDTOSchema } from '@/types/clients/clients-types'
-import { CreateClientsUsecase } from '../../../usecase/create-clients-usecase'
+import { CreateClientsUsecase } from '../../../usecase/clients/create-clients-usecase'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function createClientsControllers(

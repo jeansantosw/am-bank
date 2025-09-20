@@ -1,9 +1,9 @@
-import { DrizzleClientsRepository } from '@/repositories/drizzle/clients/drizzle-clients-repository'
+import type { IClientsRepository } from '@/repositories/drizzle/clients/clients-reposirory'
 import type { ICreateClientsDTO } from '@/types/clients/clients-types'
 
 export class CreateClientsUsecase {
-  // constructor() {}
-  drizzleClientsRepository = new DrizzleClientsRepository()
+  constructor(private clientesRepository: IClientsRepository) {}
+
   async execute({
     cpf,
     name,
@@ -12,7 +12,7 @@ export class CreateClientsUsecase {
     workplace,
     profession,
   }: ICreateClientsDTO) {
-    const client = await this.drizzleClientsRepository.create({
+    const client = await this.clientesRepository.create({
       cpf,
       name,
       email,
